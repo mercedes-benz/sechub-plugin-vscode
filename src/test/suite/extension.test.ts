@@ -33,7 +33,6 @@ suite('Extension Test Suite', () => {
 		
 		assert.strictEqual(277,findings.length);
 
-
 	});
 
 	test('SecHub test report file can be loaded and contains medium finding with id3', () => {

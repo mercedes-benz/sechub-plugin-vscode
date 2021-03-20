@@ -17,7 +17,8 @@
 		"commands": [
 			{
 				"command": "sechubReportView.importReportFile",
-				"title": "Import SecHub report file"
+				"title": "Import SecHub report file",
+				"icon": "media/sechub-import-report.svg"
 			},
 			{
 				"command": "sechubReportView.showCallHierarchyEntry",
@@ -48,7 +49,6 @@
 					"contextualTitle": "SecHub Call Hierarchy"
 				}
 			]
-			
 		},
 		"viewsWelcome": [
 			{
@@ -93,5 +93,8 @@
 		"mocha": "^8.1.3",
 		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0"
+	},
+	"dependencies": {
+		"mocha-explorer-launcher-scripts": "^0.3.0"
 	}
 }

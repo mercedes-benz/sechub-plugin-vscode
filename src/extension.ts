@@ -16,7 +16,11 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('SecHub plugin activation requested.');
 
 	/* TODO de-jcup: let's load test data at the moment for development , but must be removed later */
-	let initialFindingModel = undefined; //ssecHubModel.loadFromFile(resolveFileLocation("test_sechub_report-1.json"));
+	let loadTestData: boolean = true;
+	let initialFindingModel = undefined;
+	if (loadTestData) {
+		initialFindingModel = secHubModel.loadFromFile(resolveFileLocation("test_sechub_report-1.json"));
+	}
 
 	let secHubContext: SecHubContext = new SecHubContext(initialFindingModel, context);
 
@@ -77,8 +81,9 @@ function hookImportAction(context: SecHubContext) {
 }
 
 function hookShowCallHierarchyAction(context: SecHubContext) {
-	let showCallHierarchyCommandDisposable = vscode.commands.registerCommand('sechubReportView.showCallHierarchyEntry', (reportItem:ReportItem) => {
-		if (reportItem instanceof FindingNodeReportItem){
+	let showCallHierarchyCommandDisposable = vscode.commands.registerCommand('sechubReportView.showCallHierarchyEntry', 
+		(reportItem: ReportItem) => {
+		if (reportItem instanceof FindingNodeReportItem) {
 			context.callHierarchyTreeDataProvider.update(reportItem.findingNode);
 		}
 	});
@@ -98,7 +103,7 @@ class SecHubContext {
 	) {
 		this.reportTreeProvider = new SecHubReportTreeDataProvider(findingModel);
 		this.callHierarchyTreeDataProvider = new SecHubCallHierarchyTreeDataProvider(undefined);
-		this.extensionContext=extensionContext;
+		this.extensionContext = extensionContext;
 	}
 }
 

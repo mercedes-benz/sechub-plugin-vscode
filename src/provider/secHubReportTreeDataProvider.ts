@@ -49,7 +49,7 @@ export class SecHubReportTreeDataProvider implements vscode.TreeDataProvider<Rep
    */
   private getReportItems(): ReportItem[] {
     let rootItems: ReportItem[] = [];
-    rootItems.push(new FindingModelMetaDataReportItem("Report UUID:", this.findingModel?.jobUUID, vscode.TreeItemCollapsibleState.None));
+    rootItems.push(new FindingModelMetaDataReportItem("Report xxxxUUID:", this.findingModel?.jobUUID, vscode.TreeItemCollapsibleState.None));
     rootItems.push(new FindingModelMetaDataReportItem("Traffic light:",this.findingModel?.trafficLight, vscode.TreeItemCollapsibleState.None));
     let findings: FindingModelMetaDataReportItem = new FindingModelMetaDataReportItem("Findings:",""+this.findingModel?.result.findings.length, vscode.TreeItemCollapsibleState.Expanded);
     rootItems.push(findings);

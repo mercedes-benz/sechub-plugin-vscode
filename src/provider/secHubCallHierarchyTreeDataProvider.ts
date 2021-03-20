@@ -4,12 +4,12 @@ import * as path from 'path';
 import * as sechubModel from '../model/sechubModel';
 
 export class SecHubCallHierarchyTreeDataProvider implements vscode.TreeDataProvider<HierarchyItem> {
-  
+
   public update(findingNode: sechubModel.FindingNode) {
-      this.finding=findingNode;
-      this.refresh();
+    this.finding = findingNode;
+    this.refresh();
   }
-  
+
   /* refresh mechanism for tree:*/
   private _onDidChangeTreeData: vscode.EventEmitter<HierarchyItem | undefined | null | void> = new vscode.EventEmitter<HierarchyItem | undefined | null | void>();
   readonly onDidChangeTreeData: vscode.Event<HierarchyItem | undefined | null | void> = this._onDidChangeTreeData.event;
@@ -31,7 +31,7 @@ export class SecHubCallHierarchyTreeDataProvider implements vscode.TreeDataProvi
     }
 
     if (element) {
-      return Promise.resolve(element.children); 
+      return Promise.resolve(element.children);
     } else {
       return Promise.resolve(
         this.createtHierarchyItems()
@@ -53,7 +53,7 @@ export class SecHubCallHierarchyTreeDataProvider implements vscode.TreeDataProvi
 
     do {
       let item: HierarchyItem = new HierarchyItem(codeCallStackElement, state);
-      if (items.length==0){
+      if (items.length === 0) {
         items.push(item);
       }
       item.contextValue = "callHierarchyitem";
