@@ -53,6 +53,11 @@ export class SecHubCallHierarchyTreeDataProvider implements vscode.TreeDataProvi
 
     do {
       let item: HierarchyItem = new HierarchyItem(codeCallStackElement, state);
+      item.command = {
+        command: "sechubCallHierarchyView.selectNode",
+        title: "Select Node",
+        arguments: [item]
+      };
       if (items.length === 0) {
         items.push(item);
       }
@@ -72,9 +77,21 @@ export class SecHubCallHierarchyTreeDataProvider implements vscode.TreeDataProvi
 
 }
 
+/*
+calls": {
+                  "location": "com/daimler/sechub/domain/administration/project/ProjectJsonInput.java",
+                  "line": 36,
+                  "column": 37,
+                  "source": "\tprivate Optional<ProjectWhiteList> whiteList = Optional.empty();",
+                  "relevantPart": "whiteList"
+               }
+               */
+
 export class HierarchyItem extends vscode.TreeItem {
 
   readonly children: HierarchyItem[] = [];
+  callstackElement: sechubModel.CodeCallStackElement;
+
 
   constructor(callstackElement: sechubModel.CodeCallStackElement, state: vscode.TreeItemCollapsibleState
   ) {
@@ -82,6 +99,7 @@ export class HierarchyItem extends vscode.TreeItem {
 
     this.description = callstackElement.location;
     this.tooltip = `${this.label}-${this.description}`;
+    this.callstackElement = callstackElement;
   }
 
   iconPath = {

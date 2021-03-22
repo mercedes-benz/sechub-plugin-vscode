@@ -1,16 +1,14 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
-import { SecHubCallHierarchyTreeDataProvider } from './provider/secHubCallHierarchyTreeDataProvider';
-import { HierarchyItem } from './provider/secHubCallHierarchyTreeDataProvider';
-
-import { FindingNodeReportItem, SecHubReportTreeDataProvider } from './provider/secHubReportTreeDataProvider';
-import { ReportItem } from './provider/secHubReportTreeDataProvider';
-
-import * as secHubModel from './model/sechubModel';
 import * as path from 'path';
-import { report } from 'process';
-
+import * as vscode from 'vscode';
+import * as reportViewActions from './action/reportViewActions';
+import * as callHierarchyViewActions from './action/callHierarchyViewActions';
+import * as importActions from './action/importActions';
+import { FileLocationExplorer } from './fileLocationExplorer';
+import * as secHubModel from './model/sechubModel';
+import { HierarchyItem, SecHubCallHierarchyTreeDataProvider } from './provider/secHubCallHierarchyTreeDataProvider';
+import { ReportItem, SecHubReportTreeDataProvider } from './provider/secHubReportTreeDataProvider';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('SecHub plugin activation requested.');
@@ -45,52 +43,13 @@ function buildCallHierarchyView(context: SecHubContext) {
 }
 
 function hookActions(context: SecHubContext) {
-	hookImportAction(context);
-	hookShowCallHierarchyAction(context);
+	importActions.hookImportAction(context);
+	reportViewActions.hookShowCallHierarchyAction(context);
+	callHierarchyViewActions.hookShowInEditorAction(context);
 }
 
-function hookImportAction(context: SecHubContext) {
-	let importReportFileCommandDisposable = vscode.commands.registerCommand('sechubReportView.importReportFile', () => {
 
-		const options: vscode.OpenDialogOptions = {
-
-			title: "Import SecHub report file",
-			canSelectMany: false,
-			openLabel: 'Open',
-			filters: {
-				'SecHub report files': ['json'],
-				'All files': ['*']
-			}
-		};
-
-		vscode.window.showOpenDialog(options).then(fileUri => {
-			if (fileUri && fileUri[0]) {
-				let filePath = fileUri[0].fsPath;
-
-				vscode.window.showInformationMessage('Started SecHub report import...');
-				console.log('Selected file: ' + filePath);
-
-				let findingModel = secHubModel.loadFromFile(filePath);
-				context.reportTreeProvider.update(findingModel);
-				context.findingModel = findingModel;
-			}
-		});
-	});
-
-	context.extensionContext.subscriptions.push(importReportFileCommandDisposable);
-}
-
-function hookShowCallHierarchyAction(context: SecHubContext) {
-	let showCallHierarchyCommandDisposable = vscode.commands.registerCommand('sechubReportView.showCallHierarchyEntry', 
-		(reportItem: ReportItem) => {
-		if (reportItem instanceof FindingNodeReportItem) {
-			context.callHierarchyTreeDataProvider.update(reportItem.findingNode);
-		}
-	});
-	context.extensionContext.subscriptions.push(showCallHierarchyCommandDisposable);
-}
-
-class SecHubContext {
+export class SecHubContext {
 	callHierarchyView: vscode.TreeView<HierarchyItem> | undefined = undefined;
 	reportView: vscode.TreeView<ReportItem> | undefined = undefined;
 
@@ -98,12 +57,21 @@ class SecHubContext {
 	reportTreeProvider: SecHubReportTreeDataProvider;
 	findingModel: secHubModel.FindingModel | undefined;
 	extensionContext: vscode.ExtensionContext;
+	fileLocationExplorer: FileLocationExplorer;
 
 	constructor(findingModel: secHubModel.FindingModel | undefined, extensionContext: vscode.ExtensionContext,
 	) {
 		this.reportTreeProvider = new SecHubReportTreeDataProvider(findingModel);
 		this.callHierarchyTreeDataProvider = new SecHubCallHierarchyTreeDataProvider(undefined);
 		this.extensionContext = extensionContext;
+		this.fileLocationExplorer = new FileLocationExplorer();
+
+		/* setup search folders for explorer */
+		let workspaceFolders = vscode.workspace.workspaceFolders; // get the open folder path
+		workspaceFolders?.forEach((workspaceFolder) => {
+			this.fileLocationExplorer.searchFolders.add(workspaceFolder.uri.fsPath);
+		});
+
 	}
 }
 

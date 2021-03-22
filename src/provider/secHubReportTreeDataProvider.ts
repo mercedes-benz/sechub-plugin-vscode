@@ -26,9 +26,9 @@ export class SecHubReportTreeDataProvider implements vscode.TreeDataProvider<Rep
     }
 
     if (element) {
-      if (element instanceof FindingModelMetaDataReportItem){
-        return Promise.resolve(element.children); 
-      }else{
+      if (element instanceof FindingModelMetaDataReportItem) {
+        return Promise.resolve(element.children);
+      } else {
         return Promise.resolve([]); // no children at the moment
       }
     } else {
@@ -49,14 +49,19 @@ export class SecHubReportTreeDataProvider implements vscode.TreeDataProvider<Rep
    */
   private getReportItems(): ReportItem[] {
     let rootItems: ReportItem[] = [];
-    rootItems.push(new FindingModelMetaDataReportItem("Report xxxxUUID:", this.findingModel?.jobUUID, vscode.TreeItemCollapsibleState.None));
-    rootItems.push(new FindingModelMetaDataReportItem("Traffic light:",this.findingModel?.trafficLight, vscode.TreeItemCollapsibleState.None));
-    let findings: FindingModelMetaDataReportItem = new FindingModelMetaDataReportItem("Findings:",""+this.findingModel?.result.findings.length, vscode.TreeItemCollapsibleState.Expanded);
+    rootItems.push(new FindingModelMetaDataReportItem("Report UUID:", this.findingModel?.jobUUID, vscode.TreeItemCollapsibleState.None));
+    rootItems.push(new FindingModelMetaDataReportItem("Traffic light:", this.findingModel?.trafficLight, vscode.TreeItemCollapsibleState.None));
+    let findings: FindingModelMetaDataReportItem = new FindingModelMetaDataReportItem("Findings:", "" + this.findingModel?.result.findings.length, vscode.TreeItemCollapsibleState.Expanded);
     rootItems.push(findings);
 
     this.findingModel?.result.findings.forEach((finding) => {
       let item: ReportItem = new FindingNodeReportItem(finding);
       item.contextValue = "reportItem";
+      item.command = {
+        command: "sechubReportView.selectNode",
+        title: "Select Node",
+        arguments: [item]
+      };
       findings.children.push(item);
     });
     return rootItems;
@@ -68,17 +73,17 @@ export class SecHubReportTreeDataProvider implements vscode.TreeDataProvider<Rep
 export class ReportItem extends vscode.TreeItem {
 }
 
-export class FindingModelMetaDataReportItem extends ReportItem{
+export class FindingModelMetaDataReportItem extends ReportItem {
   children: ReportItem[] = [];
 
-  constructor(key: string, value:string|undefined, state:vscode.TreeItemCollapsibleState){
-    super(key,state);
-    this.description=value;
+  constructor(key: string, value: string | undefined, state: vscode.TreeItemCollapsibleState) {
+    super(key, state);
+    this.description = value;
   }
 
 }
 
-export class FindingNodeReportItem extends ReportItem{
+export class FindingNodeReportItem extends ReportItem {
   readonly findingNode: sechubModel.FindingNode;
 
   constructor(findingNode: sechubModel.FindingNode
@@ -87,7 +92,7 @@ export class FindingNodeReportItem extends ReportItem{
 
     this.description = findingNode.name;
     this.tooltip = `${this.label}-${this.description}`;
-    this.findingNode=findingNode;
+    this.findingNode = findingNode;
   }
 
 
