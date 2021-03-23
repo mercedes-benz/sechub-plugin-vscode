@@ -33,9 +33,22 @@ export class SecHubCallHierarchyTreeDataProvider implements vscode.TreeDataProvi
     if (element) {
       return Promise.resolve(element.children);
     } else {
+      // no element found, so create...
       return Promise.resolve(
         this.createtHierarchyItems()
       );
+    }
+  }
+
+  getParent(element?: HierarchyItem): vscode.ProviderResult<HierarchyItem> {
+    if (!this.finding) {
+      return undefined;
+    }
+
+    if (!element) {
+      return undefined;
+    } else {
+      return element.parent;
     }
   }
 
@@ -64,6 +77,7 @@ export class SecHubCallHierarchyTreeDataProvider implements vscode.TreeDataProvi
       item.contextValue = "callHierarchyitem";
       if (parent) {
         parent.add(item);
+        item.parent = parent;
       }
       /* go deeper ...*/
       codeCallStackElement = codeCallStackElement.calls;
@@ -81,17 +95,17 @@ export class HierarchyItem extends vscode.TreeItem {
 
   readonly children: HierarchyItem[] = [];
   callstackElement: sechubModel.CodeCallStackElement;
-  findingNode: sechubModel.FindingNode|undefined;
+  findingNode: sechubModel.FindingNode | undefined;
+  parent: HierarchyItem | undefined;
 
-
-  constructor(findingNode: sechubModel.FindingNode|undefined, callstackElement: sechubModel.CodeCallStackElement, state: vscode.TreeItemCollapsibleState
+  constructor(findingNode: sechubModel.FindingNode | undefined, callstackElement: sechubModel.CodeCallStackElement, state: vscode.TreeItemCollapsibleState
   ) {
     super(callstackElement.relevantPart, state);
 
     this.description = callstackElement.location;
     this.tooltip = `${this.label}-${this.description}`;
     this.callstackElement = callstackElement;
-    this.findingNode=findingNode;
+    this.findingNode = findingNode;
   }
 
   iconPath = {

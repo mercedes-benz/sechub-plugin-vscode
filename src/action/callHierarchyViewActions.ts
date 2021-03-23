@@ -3,10 +3,9 @@ import * as sechubExtension from './../extension';
 import * as secHubModel from './../model/sechubModel';
 import { HierarchyItem } from './../provider/secHubCallHierarchyTreeDataProvider';
 
-export function hookSelectNodeAction(context: sechubExtension.SecHubContext) {
+export function hookHierarchyItemActions(context: sechubExtension.SecHubContext) {
 	let callBack = (hierarchyItem: HierarchyItem) => {
 		if (hierarchyItem instanceof HierarchyItem) {
-			console.log("show in editor called");
 			var element = hierarchyItem.callstackElement;
 
 			openInEditor(context, element);

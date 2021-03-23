@@ -21,8 +21,8 @@
 				"icon": "media/sechub-import-report.svg"
 			},
 			{
-				"command": "sechubReportView.showCallHierarchyEntry",
-				"title": "Show"
+				"command": "sechubReportView.openCWEinBrowser",
+				"title": "CWE"
 			},
 			{
 				"command": "sechubCallHierarchyView.showInEditor",
@@ -73,6 +73,14 @@
 					"when": "view == sechubReportView",
 					"group": "navigation"
 				}
+			],
+			"view/item/context": [
+				{
+					"command": "sechubReportView.openCWEinBrowser",
+					"when": "view == sechubReportView && viewItem == reportItem",
+					"group": "inline"
+				}
+
 			]
 		}
 	},

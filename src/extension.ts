@@ -2,14 +2,15 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as path from 'path';
 import * as vscode from 'vscode';
-import * as reportViewActions from './action/reportViewActions';
 import * as callHierarchyViewActions from './action/callHierarchyViewActions';
 import * as importActions from './action/importActions';
+import * as reportViewActions from './action/reportViewActions';
 import { FileLocationExplorer } from './fileLocationExplorer';
+import { FindingNodeLinkBuilder } from './model/findingNodeLinkBuilder';
 import * as secHubModel from './model/sechubModel';
 import { HierarchyItem, SecHubCallHierarchyTreeDataProvider } from './provider/secHubCallHierarchyTreeDataProvider';
-import { ReportItem, SecHubReportTreeDataProvider } from './provider/secHubReportTreeDataProvider';
 import { SecHubInfoTreeDataProvider } from './provider/secHubInfoTreeDataProvider';
+import { ReportItem, SecHubReportTreeDataProvider } from './provider/secHubReportTreeDataProvider';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('SecHub plugin activation requested.');
@@ -33,15 +34,17 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function buildReportView(context: SecHubContext) {
-	vscode.window.createTreeView('sechubReportView', {
+	var view =vscode.window.createTreeView('sechubReportView', {
 		treeDataProvider: context.reportTreeProvider
 	});
+	context.reportView=view;
 }
 
 function buildCallHierarchyView(context: SecHubContext) {
-	context.callHierarchyView = vscode.window.createTreeView('sechubCallHierarchyView', {
+	var view = vscode.window.createTreeView('sechubCallHierarchyView', {
 		treeDataProvider: context.callHierarchyTreeDataProvider
 	});
+	context.callHierarchyView=view;
 }
 
 function buildInfoView(context: SecHubContext) {
@@ -52,15 +55,16 @@ function buildInfoView(context: SecHubContext) {
 
 function hookActions(context: SecHubContext) {
 	importActions.hookImportAction(context);
-	reportViewActions.hookShowCallHierarchyAction(context);
-	callHierarchyViewActions.hookSelectNodeAction(context);
+	reportViewActions.hookReportItemActions(context);
+	callHierarchyViewActions.hookHierarchyItemActions(context);
 }
 
 
 export class SecHubContext {
-	callHierarchyView: vscode.TreeView<HierarchyItem> | undefined = undefined;
+	callHierarchyView: vscode.TreeView<HierarchyItem|undefined> | undefined = undefined;
 	reportView: vscode.TreeView<ReportItem> | undefined = undefined;
 
+	findingNodeLinkBuilder: FindingNodeLinkBuilder;
 	callHierarchyTreeDataProvider: SecHubCallHierarchyTreeDataProvider;
 	reportTreeProvider: SecHubReportTreeDataProvider;
 	infoTreeProvider: SecHubInfoTreeDataProvider;
@@ -72,9 +76,10 @@ export class SecHubContext {
 	) {
 		this.reportTreeProvider = new SecHubReportTreeDataProvider(findingModel);
 		this.callHierarchyTreeDataProvider = new SecHubCallHierarchyTreeDataProvider(undefined);
-		this.infoTreeProvider = new SecHubInfoTreeDataProvider(undefined,undefined);
+		this.infoTreeProvider = new SecHubInfoTreeDataProvider(undefined, undefined);
 		this.extensionContext = extensionContext;
 		this.fileLocationExplorer = new FileLocationExplorer();
+		this.findingNodeLinkBuilder = new FindingNodeLinkBuilder();
 
 		/* setup search folders for explorer */
 		let workspaceFolders = vscode.workspace.workspaceFolders; // get the open folder path

@@ -23,7 +23,6 @@ export function hookImportAction(context: sechubExtension.SecHubContext) {
 				let filePath = fileUri[0].fsPath;
 
 				vscode.window.showInformationMessage('Started SecHub report import...');
-				console.log('Selected file: ' + filePath);
 
 				let findingModel = secHubModel.loadFromFile(filePath);
 				context.reportTreeProvider.update(findingModel);

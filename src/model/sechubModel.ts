@@ -40,7 +40,7 @@ export interface FindingNode {
     name: string
     severity: Severity
 
-    cweId: number
+    cweId?: number
 
     code?: CodeCallStackElement
 }
@@ -58,5 +58,4 @@ export interface CodeCallStackElement{
     calls?: CodeCallStackElement
 
 }
-
 

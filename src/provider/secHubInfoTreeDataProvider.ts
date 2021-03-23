@@ -1,11 +1,15 @@
-import * as vscode from 'vscode';
-import * as fs from 'fs';
 import * as path from 'path';
+import * as vscode from 'vscode';
+import { Command } from 'vscode';
+import * as findingNodeLinkBuilder from '../model/findingNodeLinkBuilder';
 import * as sechubModel from '../model/sechubModel';
 
 export class SecHubInfoTreeDataProvider implements vscode.TreeDataProvider<InfoItem> {
+  findingNodeLinkBuilder: findingNodeLinkBuilder.FindingNodeLinkBuilder;
 
-  constructor(private findingNode: sechubModel.FindingNode | undefined, private callStack: sechubModel.CodeCallStackElement | undefined) { }
+  constructor(private findingNode: sechubModel.FindingNode | undefined, private callStack: sechubModel.CodeCallStackElement | undefined) {
+    this.findingNodeLinkBuilder = new findingNodeLinkBuilder.FindingNodeLinkBuilder();
+  }
 
   /* refresh mechanism for tree:*/
   private _onDidChangeTreeData: vscode.EventEmitter<InfoItem | undefined | null | void> = new vscode.EventEmitter<InfoItem | undefined | null | void>();
@@ -52,11 +56,12 @@ export class SecHubInfoTreeDataProvider implements vscode.TreeDataProvider<InfoI
    */
   private getReportItems(): InfoItem[] {
     let rootItems: InfoItem[] = [];
-    rootItems.push(new MetaDataInfoItem("Name:", this.findingNode?.name, vscode.TreeItemCollapsibleState.None));
-    rootItems.push(new MetaDataInfoItem(SecHubInfoTreeDataProvider.cweIdKey, this.findingNode?.cweId, vscode.TreeItemCollapsibleState.None));
-    rootItems.push(new MetaDataInfoItem("Line:", this.callStack?.line, vscode.TreeItemCollapsibleState.None));
-    rootItems.push(new MetaDataInfoItem("Column:", this.callStack?.column, vscode.TreeItemCollapsibleState.None));
-    rootItems.push(new MetaDataInfoItem("Source:", this.callStack?.source.trim(), vscode.TreeItemCollapsibleState.None));
+
+    rootItems.push(new MetaDataInfoItem("Name:", this.findingNode?.name, undefined, vscode.TreeItemCollapsibleState.None));
+    rootItems.push(new MetaDataInfoItem(SecHubInfoTreeDataProvider.cweIdKey, "CWE "+this.findingNode?.cweId, this.findingNodeLinkBuilder.buildCWEOpenInBrowserCommand(this.findingNode), vscode.TreeItemCollapsibleState.None));
+    rootItems.push(new MetaDataInfoItem("Line:", this.callStack?.line, undefined,vscode.TreeItemCollapsibleState.None));
+    rootItems.push(new MetaDataInfoItem("Column:", this.callStack?.column,undefined, vscode.TreeItemCollapsibleState.None));
+    rootItems.push(new MetaDataInfoItem("Source:", this.callStack?.source.trim(),undefined, vscode.TreeItemCollapsibleState.None));
     return rootItems;
   }
 
@@ -68,21 +73,15 @@ export class InfoItem extends vscode.TreeItem {
 export class MetaDataInfoItem extends InfoItem {
   children: InfoItem[] = [];
 
-  constructor(key: string, value: string | number | undefined, state: vscode.TreeItemCollapsibleState) {
+  constructor(key: string, value: string | number | undefined, command: Command|undefined, state: vscode.TreeItemCollapsibleState) {
     super(key, state);
     this.description = "" + value;
 
-    if (SecHubInfoTreeDataProvider.cweIdKey === key && (!(value === null))) {
-      const uri = vscode.Uri.parse("https://cwe.mitre.org/data/definitions/" + value + ".html");
-      this.command = {
-        title: "Open CWE-ID:" + value+ " in browser",
-        command: "vscode.open",
-        arguments: [uri]
-      };
-      this.tooltip="Click to open CWE description in browser";
+    this.command=command;
+    if (SecHubInfoTreeDataProvider.cweIdKey === key) {
+      this.tooltip = "Click to open CWE description in browser";
     }
   }
-
 }
 
 export class FindingMetaInfoItem extends InfoItem {
