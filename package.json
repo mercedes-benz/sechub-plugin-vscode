@@ -42,13 +42,19 @@
 			"sechub-view-container": [
 				{
 					"id": "sechubReportView",
-					"name": "SecHub Report",
+					"name": "Report",
 					"icon": "media/sechub-logo-vscode-styled.svg",
 					"contextualTitle": "SecHub Report"
 				},
 				{
 					"id": "sechubCallHierarchyView",
-					"name": "SecHub Call Hierarchy",
+					"name": "Call Hierarchy",
+					"icon": "media/sechub-logo-vscode-styled.svg",
+					"contextualTitle": "SecHub Call Hierarchy"
+				},
+				{
+					"id": "sechubInfoView",
+					"name": "Info",
 					"icon": "media/sechub-logo-vscode-styled.svg",
 					"contextualTitle": "SecHub Call Hierarchy"
 				}
@@ -66,13 +72,6 @@
 					"command": "sechubReportView.importReportFile",
 					"when": "view == sechubReportView",
 					"group": "navigation"
-				}
-			],
-			"view/item/context": [
-				{
-					"command": "sechubReportView.showCallHierarchyEntry",
-					"when": "view == sechubReportView && viewItem == reportItem",
-					"group": "inline"
 				}
 			]
 		}

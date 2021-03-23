@@ -9,6 +9,7 @@ import { FileLocationExplorer } from './fileLocationExplorer';
 import * as secHubModel from './model/sechubModel';
 import { HierarchyItem, SecHubCallHierarchyTreeDataProvider } from './provider/secHubCallHierarchyTreeDataProvider';
 import { ReportItem, SecHubReportTreeDataProvider } from './provider/secHubReportTreeDataProvider';
+import { SecHubInfoTreeDataProvider } from './provider/secHubInfoTreeDataProvider';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('SecHub plugin activation requested.');
@@ -24,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	buildReportView(secHubContext);
 	buildCallHierarchyView(secHubContext);
+	buildInfoView(secHubContext);
 
 	hookActions(secHubContext);
 
@@ -42,10 +44,16 @@ function buildCallHierarchyView(context: SecHubContext) {
 	});
 }
 
+function buildInfoView(context: SecHubContext) {
+	vscode.window.createTreeView('sechubInfoView', {
+		treeDataProvider: context.infoTreeProvider
+	});
+}
+
 function hookActions(context: SecHubContext) {
 	importActions.hookImportAction(context);
 	reportViewActions.hookShowCallHierarchyAction(context);
-	callHierarchyViewActions.hookShowInEditorAction(context);
+	callHierarchyViewActions.hookSelectNodeAction(context);
 }
 
 
@@ -55,6 +63,7 @@ export class SecHubContext {
 
 	callHierarchyTreeDataProvider: SecHubCallHierarchyTreeDataProvider;
 	reportTreeProvider: SecHubReportTreeDataProvider;
+	infoTreeProvider: SecHubInfoTreeDataProvider;
 	findingModel: secHubModel.FindingModel | undefined;
 	extensionContext: vscode.ExtensionContext;
 	fileLocationExplorer: FileLocationExplorer;
@@ -63,6 +72,7 @@ export class SecHubContext {
 	) {
 		this.reportTreeProvider = new SecHubReportTreeDataProvider(findingModel);
 		this.callHierarchyTreeDataProvider = new SecHubCallHierarchyTreeDataProvider(undefined);
+		this.infoTreeProvider = new SecHubInfoTreeDataProvider(undefined,undefined);
 		this.extensionContext = extensionContext;
 		this.fileLocationExplorer = new FileLocationExplorer();
 

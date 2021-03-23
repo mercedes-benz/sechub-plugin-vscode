@@ -12,8 +12,8 @@ export function hookShowCallHierarchyAction(context: sechubExtension.SecHubConte
 		}
 	};
 
-	let showCallHierarchyCommandDisposable = vscode.commands.registerCommand('sechubReportView.showCallHierarchyEntry', showCallHierarchyCallBack);
-	context.extensionContext.subscriptions.push(showCallHierarchyCommandDisposable);
+	// let showCallHierarchyCommandDisposable = vscode.commands.registerCommand('sechubReportView.showCallHierarchyEntry', showCallHierarchyCallBack);
+	// context.extensionContext.subscriptions.push(showCallHierarchyCommandDisposable);
 
 	let selectCallHierarchyCommandDisposable = vscode.commands.registerCommand("sechubReportView.selectNode", showCallHierarchyCallBack);
 	context.extensionContext.subscriptions.push(selectCallHierarchyCommandDisposable);
