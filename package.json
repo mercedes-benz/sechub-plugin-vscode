@@ -80,7 +80,6 @@
 					"when": "view == sechubReportView && viewItem == reportItem",
 					"group": "inline"
 				}
-
 			]
 		}
 	},

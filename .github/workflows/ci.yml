@@ -1,25 +1,22 @@
 name: CI
-on:
+on: 
   push:
-    branches:
-      - master
-  pull_request:
+    branches-ignore:
+     # we do NOT build the documentation branch, because here we only copy build output 
+     # of documentation from master branch to the corresponding doc folders -e.g. /docs/latest
+     # So this branch is only for github pages. 
+     - documentation
+     # We ignore everything where tag starts with v* - this is done by release build!
+    tags-ignore:
+     - v*
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          submodules: true
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.x
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
-      - run: yarn build
+
+    runs-on: ubuntu-latest
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+    with:
+      node-version: '14'
+    - run: npm install
+    - run: npm test
