@@ -1,8 +1,10 @@
 {
-	"name": "sechub-plugin-vscode",
+	"name": "sechub",
 	"displayName": "SecHub",
 	"description": "SecHub plugin for VSCode/VSCodium",
-	"version": "0.0.1",
+	"version": "0.1.0",
+	"license": "MIT",
+	"publisher": "adaimlertssgmbh",
 	"engines": {
 		"vscode": "^1.51.0"
 	},

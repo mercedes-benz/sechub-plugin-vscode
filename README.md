@@ -1,13 +1,17 @@
 <!-- SPDX-License-Identifier: MIT -->
-# My Project
+[![CI](https://github.com/Daimler/sechub-plugin-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/Daimler/sechub-plugin-vscode/actions/workflows/ci.yml)
+
+# SecHub VSCode/VSCodium/Eclipse Theia plugin
 
 ## Intended Usage
 
-⚠️ //TODO// Describe your example! Eg: This project is made for cooking the best Tiramisu. It works best with high quality ingredients and the best tools. Please describe your project as accurately and concisely as possible to help others understand your use case.
+This is an VSCode/Codium/Eclipse Theia plugin for a convenient IDE integration of [SecHub](https://github.com/daimler/sechub)  
+
+<!--Please look at [user guide](src/docs/asciidoc/user-guide.adoc) for more information.-->
+
 
 ## Installation
-
-⚠️ //TODO// Add your information and describe how the project can be used.
+You will find the plugin at Open-VSX marketplace when searching for term `sechub`.
 
 ## Contributing
 
@@ -29,3 +33,4 @@ Please visit <https://www.daimler-tss.com/en/imprint/> for information on the pr
 Notice: Before you use the program in productive use, please take all necessary precautions,
 e.g. testing and verifying the program with regard to your specific use.
 The program was tested solely for our own use cases, which might differ from yours.
+
