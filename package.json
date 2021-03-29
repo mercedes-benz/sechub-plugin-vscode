@@ -4,7 +4,8 @@
 	"description": "SecHub plugin for VSCode/VSCodium",
 	"version": "0.1.0",
 	"license": "MIT",
-	"publisher": "adaimlertssgmbh",
+	"publisher": "Daimler",
+	
 	"engines": {
 		"vscode": "^1.51.0"
 	},
