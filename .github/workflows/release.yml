@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-name: Release & Publish
+name: Release
 
 on: 
   workflow_dispatch:
@@ -38,9 +38,9 @@ jobs:
             path: 'package.json'
             prop_path: 'version'
     # Create local tags, so we can build documentation for this tag...
-    - name: "Tag version: v${{ steps.version.outputs.prop }}"
-      run: git tag v${{ steps.version.outputs.prop }}
-   
+    - name: "Show version: v${{ steps.version.outputs.prop }}"
+      run: echo v${{ steps.version.outputs.prop }}
+    
     # To identifiy parts not in git history and leading to "-dirty-$commitId" markern in documentation
     - name: Inspect GIT status
       if: always()
