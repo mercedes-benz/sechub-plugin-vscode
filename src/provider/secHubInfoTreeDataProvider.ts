@@ -59,6 +59,7 @@ export class SecHubInfoTreeDataProvider implements vscode.TreeDataProvider<InfoI
 
     rootItems.push(new MetaDataInfoItem("Name:", this.findingNode?.name, undefined, vscode.TreeItemCollapsibleState.None));
     rootItems.push(new MetaDataInfoItem(SecHubInfoTreeDataProvider.cweIdKey, "CWE "+this.findingNode?.cweId, this.findingNodeLinkBuilder.buildCWEOpenInBrowserCommand(this.findingNode), vscode.TreeItemCollapsibleState.None));
+    rootItems.push(new MetaDataInfoItem("Relevant part:", this.callStack?.relevantPart,undefined, vscode.TreeItemCollapsibleState.None));
     rootItems.push(new MetaDataInfoItem("Line:", this.callStack?.line, undefined,vscode.TreeItemCollapsibleState.None));
     rootItems.push(new MetaDataInfoItem("Column:", this.callStack?.column,undefined, vscode.TreeItemCollapsibleState.None));
     rootItems.push(new MetaDataInfoItem("Source:", this.callStack?.source.trim(),undefined, vscode.TreeItemCollapsibleState.None));
@@ -80,6 +81,8 @@ export class MetaDataInfoItem extends InfoItem {
     this.command=command;
     if (SecHubInfoTreeDataProvider.cweIdKey === key) {
       this.tooltip = "Click to open CWE description in browser";
+    }else{
+      this.tooltip = key+"\n"+value;
     }
   }
 }

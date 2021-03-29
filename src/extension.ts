@@ -14,9 +14,8 @@ import { ReportItem, SecHubReportTreeDataProvider } from './provider/secHubRepor
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('SecHub plugin activation requested.');
-
-	/* TODO de-jcup: let's load test data at the moment for development , but must be removed later */
-	let loadTestData: boolean = true;
+	
+	let loadTestData = context.extensionMode === vscode.ExtensionMode.Development;
 	let initialFindingModel = undefined;
 	if (loadTestData) {
 		initialFindingModel = secHubModel.loadFromFile(resolveFileLocation("test_sechub_report-1.json"));
