@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { Command } from 'vscode';

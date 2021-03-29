@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import * as assert from 'assert';
 
 import * as secHubModel from '../../model/sechubModel';

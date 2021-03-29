@@ -18,7 +18,7 @@ function applySPDXonFirstLine {
     spxTemplate=$2
 
     echo -e "${LIGHT_GREEN}$Scanning '*.$fileEnding' files${NC}"
-    find -iname \*.$fileEnding | while read file ; do
+    find ./src -iname \*.$fileEnding | while read file ; do
         if [[ -d $file ]]; then
             echo -e "${BROWN}$file${NC} - ${LIGHT_GREEN}ignored because directory.${NC}"
         elif ! grep -q SPDX-License $file

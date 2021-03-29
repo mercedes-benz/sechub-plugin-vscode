@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 export enum TrafficLight {
     red = "RED",
     yellow = "YELLOW",
