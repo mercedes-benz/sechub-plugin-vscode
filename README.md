@@ -1,5 +1,4 @@
 <!-- SPDX-License-Identifier: MIT -->
-[![CI](https://github.com/Daimler/sechub-plugin-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/Daimler/sechub-plugin-vscode/actions/workflows/ci.yml)
 
 # SecHub VSCode/VSCodium/Eclipse Theia plugin
 
