@@ -32,11 +32,11 @@ jobs:
       if: runner.os != 'Linux'
 
     - name: Fetch version from package.json
-        id: version
-        uses: notiz-dev/github-action-json-property@release
-        with: 
-            path: 'package.json'
-            prop_path: 'version'
+      id: version
+      uses: notiz-dev/github-action-json-property@release
+      with: 
+          path: 'package.json'
+          prop_path: 'version'
     # Create local tags, so we can build documentation for this tag...
     - name: "Show version: v${{ steps.version.outputs.prop }}"
       run: echo v${{ steps.version.outputs.prop }}
