@@ -7,9 +7,6 @@
 
 This is an VSCode/Codium/Eclipse Theia plugin for a convenient IDE integration of [SecHub](https://github.com/daimler/sechub)  
 
-<!--Please look at [user guide](src/docs/asciidoc/user-guide.adoc) for more information.-->
-
-
 ## Installation
 You will find the plugin at Open-VSX marketplace when searching for term `sechub`.
 
