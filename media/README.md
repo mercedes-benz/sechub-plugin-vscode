@@ -18,4 +18,4 @@ IconSet: <https://www.iconfinder.com/iconsets/icons-for-a-site-1>
 
 
 ### sechub-logo-vscode-styled.svg
-This is an adopted variant of `sechub-logo.svg`. Was necessary, because the origin SVG icon did not look good inside VSCode UI (colors are automatically reduced for tool icons.
+This is an adopted variant of `sechub-logo.svg`. Was necessary, because the origin SVG icon did not look good inside VSCode UI (colors are automatically reduced for tool icons).
