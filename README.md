@@ -2,6 +2,9 @@
 
 # SecHub VSCode/VSCodium/Eclipse Theia plugin
 
+## Current State
+Currently this plugin is in alpha state.
+
 ## Intended Usage
 
 This is an VSCode/Codium/Eclipse Theia plugin for a convenient IDE integration of [SecHub](https://github.com/daimler/sechub)  

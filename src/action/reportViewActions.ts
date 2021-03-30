@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 import * as vscode from 'vscode';
 import * as sechubExtension from './../extension';
-import * as secHubModel from './../model/sechubModel';
 import { FindingNodeReportItem, ReportItem, SecHubReportTreeDataProvider } from './../provider/secHubReportTreeDataProvider';
 
 export function hookReportItemActions(context: sechubExtension.SecHubContext) {
