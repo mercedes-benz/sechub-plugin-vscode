@@ -1,9 +1,14 @@
+<!-- SPDX-License-Identifier: MIT --->
 # Change Log
 
 All notable changes to the "sechub-plugin-vscode" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
-
+## [0.1.0]
 - Initial release
+- User has possibility to load existing SecHub report from local file system.
+- Loaded reports can be crawled and editor will show up when source is available
+- If CWE information is available a link is provided in details
+
+## [Unreleased]

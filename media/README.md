@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: MIT --->
 ## About
 
 Here some icons are stored being used inside plugin. If some of the icons are from external then the location, the author and the license will be mentioned.
@@ -6,7 +7,7 @@ Here some icons are stored being used inside plugin. If some of the icons are fr
 `if_advantage_protection_1034363.svg`
 `if_advantage_protection_1034363.png`
 
-(stored as sechub-logo.svg)
+(stored as sechub-logo.svg, also as sechub-logo-big.png)
 
 Link: <https://www.iconfinder.com/icons/1034363/advantage_protect_protection_security_shield_icon#size=128>
 

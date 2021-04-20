@@ -22,7 +22,35 @@ jobs:
         node-version: '10'
     - run: npm install
     # https://code.visualstudio.com/api/working-with-extensions/continuous-integration#github-actions
+
     - run: xvfb-run -a npm test
       if: runner.os == 'Linux'
     - run: npm test
       if: runner.os != 'Linux'
+    
+    - name: Fetch version from package.json
+      id: version
+      uses: notiz-dev/github-action-json-property@release
+      with: 
+          path: 'package.json'
+          prop_path: 'version'
+    
+    - name: "Show version: v${{ steps.version.outputs.prop }}"
+      run: echo v${{ steps.version.outputs.prop }}
+    
+    # - name: License check
+    #   uses: blackducksoftware/github-action@2.0.1
+    #   env:
+    #       SYNOPSYS_SKIP_PHONE_HOME: true
+    #   with:
+    #       args: |
+    #        '--blackduck.url="${{ secrets.BLACKDUCK_URL}}"  \
+    #        --detect.project.name="${{ secrets.BLACKDUCK_PROJECT_NAME }}" \
+    #        --detect.npm.include.dev.dependencies=false \
+    #        --blackduck.api.token="${{ secrets.BLACKDUCK_API_TOKEN }}-ci" \
+    #        --detect.excluded.detector.types=GIT \
+    #        --detect.policy.check.fail.on.severities=CRITICAL \
+    #        --detect.project.version.name="${{ steps.version.outputs.prop }}" \
+    #        --detect.detector.search.depth=3 \
+    #        --detect.blackduck.signature.scanner.exclusion.name.pattern=.git,node_modules,.vscode-test \
+    #        '
