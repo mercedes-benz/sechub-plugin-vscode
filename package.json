@@ -2,7 +2,7 @@
 	"name": "sechub",
 	"displayName": "SecHub",
 	"description": "SecHub plugin for VSCode/VSCodium",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"license": "MIT",
 	"icon": "./other/images/sechub-logo-big.png",
 	"galleryBanner": {
@@ -10,18 +10,14 @@
 		"theme": "dark"
 	},
 	"publisher": "Daimler",
-
 	"homepage": "https://github.com/Daimler/sechub-plugin-vscode/",
-
 	"bugs": {
-	  "url": "https://github.com/Daimler/sechub-plugin-vscode/issues"
+		"url": "https://github.com/Daimler/sechub-plugin-vscode/issues"
 	},
-
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Daimler/sechub-plugin-vscode/"
 	},
-	
 	"engines": {
 		"vscode": "^1.51.0"
 	},
