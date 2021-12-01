@@ -4,7 +4,7 @@
 	"description": "SecHub plugin for VSCode/VSCodium",
 	"version": "0.1.1",
 	"license": "MIT",
-	"icon": "./other/images/sechub-logo-big.png",
+	"icon": "other/images/sechub-logo-big.png",
 	"galleryBanner": {
 		"color": "#ffca28",
 		"theme": "dark"
