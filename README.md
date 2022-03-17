@@ -7,7 +7,7 @@ Currently this plugin is in alpha state.
 
 ## Intended Usage
 
-This is an VSCode/Codium/Eclipse Theia plugin for a convenient IDE integration of [SecHub](https://github.com/daimler/sechub)  
+This is an VSCode/Codium/Eclipse Theia plugin for a convenient IDE integration of [SecHub](https://github.com/mercedes-benz/sechub)  
 
 ## Installation
 You will find the plugin at Open-VSX marketplace when searching for term `sechub`.
@@ -19,7 +19,7 @@ If you want to contribute to this project, please read the [contributing guide](
 
 ## Code of Conduct
 
-Please read our [Code of Conduct](https://github.com/Daimler/daimler-foss/blob/master/CODE_OF_CONDUCT.md) as it is our base for interaction.
+Please read our [Code of Conduct](https://github.com/mercedes-benz/daimler-foss/blob/master/CODE_OF_CONDUCT.md) as it is our base for interaction.
 
 ## License
 

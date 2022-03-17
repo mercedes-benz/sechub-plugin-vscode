@@ -81,7 +81,7 @@ jobs:
           Changes in this Release
           - Some minor changes on plugin implementation
           
-          For more details please look at [Milestone ${{github.event.inputs.milestone-number}}]( https://github.com/Daimler/sechub-plugin-vscode/milestone/${{github.event.inputs.milestone-number}}?closed=1)
+          For more details please look at [Milestone ${{github.event.inputs.milestone-number}}]( https://github.com/mercedes-benz/daimler-foss/milestones/${{github.event.inputs.milestone-number}}?closed=1)
         draft: true
         prerelease: false
     - name: Upload release asset
