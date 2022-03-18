@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: MIT --->
-# SecHub Maintainers
+# SecHub VSCode Plugin Maintainers
 
 ## Maintainers
 
