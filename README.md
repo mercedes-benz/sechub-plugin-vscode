@@ -2,6 +2,8 @@
 
 # SecHub VSCode/VSCodium/Eclipse Theia plugin
 
+NOTE: Please use the new plugin from Mercedes-Benz: https://open-vsx.org/extension/mercedes-benz/sechub. The old Daimler plugin will be deprecated. The reason for the deprecation is the rebranding of Daimler to Mercedes-Benz.
+
 ## Current State
 Currently this plugin is in alpha state.
 
