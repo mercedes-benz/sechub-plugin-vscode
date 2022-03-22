@@ -5,8 +5,14 @@ All notable changes to the "sechub-plugin-vscode" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.1.2] - 2021-12-14
-- Dependencies updated and rebranding to Mercedes-Benz
+## [0.1.3] - 2022-03-22
+- Dependencies updated
+- Workflow uses Node 14
+- Notice about move of namespace added
+
+## [0.1.2] - 2022-03-18
+- Dependencies updated 
+- rebranding to Mercedes-Benz
 
 ## [0.1.1] - 2021-12-14
 - Dependencies updated
