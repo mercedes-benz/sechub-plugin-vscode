@@ -12,11 +12,11 @@ By contributing you will agree that your contribution will be put under the same
 
 ## CLA
 
-Before you can contribute, you will need to sign our CLA [Contributor License Agreement](https://github.com/mercedes-benz/daimler-foss/blob/master/cla/2019-09-11_Daimler_FOSS_CLA_DaimlerTSS.pdf) and send the signed CLA to <cla-tss@mercedes-benz.com> 
+Before you can contribute, you will need to sign our CLA [Contributor License Agreement](https://github.com/mercedes-benz/foss/blob/master/cla/2022-04-25_MB_FOSS_CLA_MBTI.pdf) and send the signed CLA to <CLA-mbti@mercedes-benz.com> 
 
 ## Communication
 
-For communication please respect our [FOSS Code of Conduct](https://github.com/Mercedes-Benz/daimler-foss/blob/master/CODE_OF_CONDUCT.md).
+For communication please respect our [FOSS Code of Conduct](https://github.com/mercedes-benz/foss/blob/master/CODE_OF_CONDUCT.md).
 
 The following communication channels exist for this project:
 - Github for reporting and claiming issues:  

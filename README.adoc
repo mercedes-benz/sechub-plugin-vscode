@@ -1,0 +1,85 @@
+// SPDX-License-Identifier: MIT
+
+:toc:
+:toclevels: 4
+:toc-placement!:
+
+toc::[]
+
+== SecHub VSCode/VSCodium/Eclipse Theia plugin
+
+This is an VSCode/VSCodium/Eclipse Theia plugin for a convenient IDE integration of https://github.com/mercedes-benz/sechub[SecHub].
+
+=== Features
+
+* Read and navigate through SecHub reports
+
+=== Installation
+
+Recommended: Install the plugin from the Open-VSX marketplace from within https://vscodium.com/[VSCodium] or https://theia-ide.org/[Eclipse Theia] by searching for the term: `sechub` in the `Extensions` manager.
+
+For VS Code you need to download the https://open-vsx.org/extension/mercedes-benz/sechub[plugin] and install it manually. It is also possible to install the plugin manually in VSCodium and Eclipse Theia.
+
+NOTE: Please use the new plugin from Mercedes-Benz: https://open-vsx.org/extension/mercedes-benz/sechub. The old Daimler plugin will be deprecated. The reason for the deprecation is the rebranding of Daimler to Mercedes-Benz.
+
+=== Development
+
+==== Run
+
+In VSCodium toolban: `Run -> Start Debugging`.
+
+==== Test
+
+Prerequisite: The Node package manager NPM needs to be installed.
+
+. Install dependencies
++
+----
+npm install
+----
+
+. Compile and run tests
++
+----
+npm test
+----
+
+==== Build
+
+. Install the vsce cli tool
++
+----
+npm install -g @vscode/vsce
+
+or under Linux
+
+sudo npm install -g @vscode/vsce
+----
+
+. Build the plugin
++
+----
+vsce package
+----
+
+=== Contributing
+
+We welcome any contributions.
+If you want to contribute to this project, please read the link:CONTRIBUTING.md[contributing guide].
+
+=== Code of Conduct
+
+Please read our https://github.com/mercedes-benz/foss/blob/master/CODE_OF_CONDUCT.md[Code of Conduct] as it is our base for interaction.
+
+=== License
+
+This project is licensed under the link:LICENSE[MIT LICENSE].
+
+=== Provider Information
+
+Please visit https://www.mercedes-benz-techinnovation.com/en/imprint/ for information on the provider.
+
+Notice: Before you use the program in productive use, please take all necessary precautions,
+e.g. testing and verifying the program with regard to your specific use.
+The program was tested solely for our own use cases, which might differ from yours.
+
