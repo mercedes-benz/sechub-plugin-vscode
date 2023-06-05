@@ -12,15 +12,17 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 16, 18 ]
 
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         # Matrix test using LTS (Long Term Support) versions
-        node-version: [ 16, 18 ]
+        node-version: ${{ matrix.node }} [ 16, 18 ]
     - run: npm ci
     # https://code.visualstudio.com/api/working-with-extensions/continuous-integration#github-actions
 

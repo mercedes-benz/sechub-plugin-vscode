@@ -12,6 +12,9 @@ jobs:
   release-version:
     name: Create releases
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 16, 18 ]
     steps:
     - name: Checkout master
       uses: actions/checkout@v3
@@ -22,7 +25,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         # Matrix test using LTS (Long Term Support) versions
-        node-version: [ 16, 18 ]
+        node-version: ${{ matrix.node }}
     # Takes the package information from the packages-lock.json file
     - run: npm ci
     # https://code.visualstudio.com/api/working-with-extensions/continuous-integration#github-actions
