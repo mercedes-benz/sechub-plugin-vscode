@@ -21,7 +21,8 @@ jobs:
     # Build
     - uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        # Matrix test using LTS (Long Term Support) versions
+        node-version: [ 16, 18 ]
     # Takes the package information from the packages-lock.json file
     - run: npm ci
     # https://code.visualstudio.com/api/working-with-extensions/continuous-integration#github-actions
