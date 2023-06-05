@@ -22,7 +22,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         # Matrix test using LTS (Long Term Support) versions
-        node-version: ${{ matrix.node }} [ 16, 18 ]
+        node-version: ${{ matrix.node }}
     - run: npm ci
     # https://code.visualstudio.com/api/working-with-extensions/continuous-integration#github-actions
 
