@@ -21,7 +21,7 @@ jobs:
     # Build
     - uses: actions/setup-node@v2
       with:
-        node-version: '10'
+        node-version: '16'
     - run: npm install
     # https://code.visualstudio.com/api/working-with-extensions/continuous-integration#github-actions
     
