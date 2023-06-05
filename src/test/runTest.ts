@@ -14,10 +14,12 @@ async function main() {
 		const extensionTestsPath = path.resolve(__dirname, './suite/index');
 
 		// Download VS Code, unzip it and run the integration test
+		// Test with latest version of VS Code
 		await runTests({ extensionDevelopmentPath, extensionTestsPath });
 
 		// Test with a specific version of VS Code
-		//await runTests({ version: '1.78.0', extensionDevelopmentPath, extensionTestsPath });
+		// The common denominator of VS Code and Eclipse Theia
+		await runTests({ version: '1.74.0', extensionDevelopmentPath, extensionTestsPath });
 	} catch (err) {
 		console.error('Failed to run tests');
 		process.exit(1);
