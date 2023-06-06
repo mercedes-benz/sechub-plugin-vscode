@@ -24,9 +24,31 @@ NOTE: Please use the new plugin from Mercedes-Benz: https://open-vsx.org/extensi
 
 === Development
 
-==== Run
+==== Develop
 
-In VSCodium toolban: `Run -> Start Debugging`.
+. Install Node.js
+
+** https://nodejs.org/en/download[Windows, macOS and Linux]
+** https://github.com/nodesource/distributions/tree/master[`deb` and `rpm` packages (Debian/Ubuntu, RHEL/Fedora etc.)]
+
+. Install Typescript compiler
++
+----
+npm install -g typescript
+
+# or on Linux
+
+sudo npm install -g typescript
+
+# check version
+tsc --version
+----
+
+. Install https://vscodium.com/[VSCodium], https://theia-ide.org/[Eclipse Theia] or https://code.visualstudio.com/[VSCode]
++
+NOTE: VSCodium and Eclipse Theia distribute free/libre open source software binaries. VS Code, on the other hand, distributes non-free binaries and collects telemetry data.
+
+. In VSCodium toolbar: `Run -> Start Debugging`.
 
 ==== Test
 
@@ -43,6 +65,8 @@ npm install
 ----
 npm test
 ----
++
+NOTE: The test automatically downloads and runs VS Code.
 
 ==== Build
 
@@ -51,7 +75,7 @@ npm test
 ----
 npm install -g @vscode/vsce
 
-or under Linux
+# or on Linux
 
 sudo npm install -g @vscode/vsce
 ----
