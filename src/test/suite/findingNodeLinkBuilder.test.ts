@@ -13,7 +13,7 @@ suite('FindingNodeLinkBuilder Test Suite', () => {
 		builderToTest = new FindingNodeLinkBuilder();
 
 		/* execute */
-		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", severity: secHubModel.Severity.high,cweId: 4711, type: secHubModel.ScanType.codeScan});
+		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", description: "description for findingX", severity: secHubModel.Severity.high,cweId: 4711, type: secHubModel.ScanType.codeScan});
 
 		/* test */
 		if (!uri){
@@ -28,7 +28,7 @@ suite('FindingNodeLinkBuilder Test Suite', () => {
 		builderToTest = new FindingNodeLinkBuilder();
 
 		/* execute */
-		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", severity: secHubModel.Severity.high, type: secHubModel.ScanType.codeScan});
+		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", description: "description for findingX", severity: secHubModel.Severity.high, type: secHubModel.ScanType.codeScan});
 
 		/* test */
 		if (uri){

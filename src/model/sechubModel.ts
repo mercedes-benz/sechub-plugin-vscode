@@ -40,14 +40,16 @@ export interface FindingModel {
     result: FindingResult
 }
 
-export interface FindingResult{
+export interface FindingResult {
     count: number
-    findings : FindingNode[]
+    findings: FindingNode[]
 }
 
 export interface FindingNode {
     id: number
     name: string
+
+    description: string
     severity: Severity
 
     cweId?: number
@@ -56,16 +58,16 @@ export interface FindingNode {
     type: ScanType
 }
 
-export interface CodeCallStackElement{
-    
+export interface CodeCallStackElement {
+
     line: number
     column: number
-    
+
     location: string
-    
+
     source: string
     relevantPart: string
-    
+
     calls?: CodeCallStackElement
 
 }

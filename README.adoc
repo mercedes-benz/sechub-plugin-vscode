@@ -13,6 +13,7 @@ This is an VSCode/VSCodium/Eclipse Theia plugin for a convenient IDE integration
 === Features
 
 * Read and navigate through SecHub reports
+* Supported modules: `codeScan` and `secretScan`
 
 === Installation
 

@@ -89,6 +89,7 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual(1, firstFinding.id);
 		assert.strictEqual(SecHubModel.Severity.medium, firstFinding.severity);
 		assert.strictEqual(SecHubModel.ScanType.secretScan, firstFinding.type);
+		assert.strictEqual("generic-api-key has detected secret for file vulnerable-go/source/app/app.go.", firstFinding.description);
 
 		let codeCallstack1 = firstFinding.code;
 		assert.strictEqual("vulnerable-go/source/app/app.go", codeCallstack1?.location);

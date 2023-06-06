@@ -39,7 +39,7 @@ export function hookImportAction(context: sechubExtension.SecHubContext) {
 						foundScanTypesStr = "Found scan types: " + Array.from(scanTypes).join(", ");
 					}
 
-					vscode.window.showErrorMessage("Unable to import report. Wrong scan types. Can only import scan types: `codeScan` or `secretScanner`." + foundScanTypesStr);
+					vscode.window.showErrorMessage("Unable to import report. Wrong scan types. Can only import scan types: `codeScan` or `secretScanner`. " + foundScanTypesStr);
 				}
 			}
 		});
