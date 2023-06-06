@@ -65,6 +65,7 @@ suite('Extension Test Suite', () => {
 		let secondFinding = findings[1];
 		assert.strictEqual(2, secondFinding.id);
 		assert.strictEqual(SecHubModel.Severity.high, secondFinding.severity);
+		assert.strictEqual(SecHubModel.ScanType.codeScan, secondFinding.type);
 
 		let codeCallstack1 = secondFinding.code;
 		assert.strictEqual("vulnerable-go/source/app/app.go", codeCallstack1?.location);
@@ -76,6 +77,32 @@ suite('Extension Test Suite', () => {
 
 		let codeCallstack2 = codeCallstack1?.calls;
 		assert.strictEqual(undefined, codeCallstack2);
+	});
+
+	test('SecHub load test report originating from Gitleaks (Secret Scan) scan', () => {
+		/* execute */
+		let model = SecHubModel.loadFromFile(resolveFileLocation("test_sechub_report_gitleaks.json"));
+
+		/* test */
+		let findings = model.result.findings;
+		let firstFinding = findings[0];
+		assert.strictEqual(1, firstFinding.id);
+		assert.strictEqual(SecHubModel.Severity.medium, firstFinding.severity);
+		assert.strictEqual(SecHubModel.ScanType.secretScan, firstFinding.type);
+
+		let codeCallstack1 = firstFinding.code;
+		assert.strictEqual("vulnerable-go/source/app/app.go", codeCallstack1?.location);
+		assert.strictEqual(76, codeCallstack1?.line);
+		assert.strictEqual(11, codeCallstack1?.column);
+		assert.strictEqual("21232f297a57a5a743894a0e4a801fc3", codeCallstack1?.source);
+	});
+
+	test('SecHub load test report of scan error', () => {
+		/* execute */
+		let model = SecHubModel.loadFromFile(resolveFileLocation("test_sechub_report_error.json"));
+
+		/* test */
+		assert.strictEqual(0, model.result.findings.length);
 	});
 });
 

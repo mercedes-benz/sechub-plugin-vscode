@@ -14,6 +14,15 @@ export enum Severity {
     critical = "CRITICAL",
 }
 
+export enum ScanType {
+    codeScan = "codeScan",
+    webScan = "webScan",
+    infraScan = "infraScan",
+    licenseScan = "licenseScan",
+    secretScan = "secretScan",
+    unknown = "unknown"
+}
+
 export function loadFromFile(location: string): FindingModel {
 
     var fs = require('fs');
@@ -44,6 +53,7 @@ export interface FindingNode {
     cweId?: number
 
     code?: CodeCallStackElement
+    type: ScanType
 }
 
 export interface CodeCallStackElement{
