@@ -49,6 +49,8 @@ tsc --version
 NOTE: VSCodium and Eclipse Theia distribute free/libre open source software binaries. VS Code, on the other hand, distributes non-free binaries and collects telemetry data.
 
 . In VSCodium toolbar: `Run -> Start Debugging`.
++
+image::README/start_debugging.png[]
 
 ==== Test
 
