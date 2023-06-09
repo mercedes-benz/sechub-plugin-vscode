@@ -105,6 +105,49 @@ suite('Extension Test Suite', () => {
 		/* test */
 		assert.strictEqual(0, model.result.findings.length);
 	});
+
+	test('SecHub load test report callstack, but no column, source or relevant part', () => {
+		/* execute */
+		let model = SecHubModel.loadFromFile(resolveFileLocation("test_sechub_report-3.json"));
+
+		/* test */
+		let findings = model.result.findings;
+
+		assert.strictEqual(2, findings.length);
+		let firstFinding = findings[0];
+		assert.strictEqual(1, firstFinding.id);
+		assert.strictEqual(SecHubModel.Severity.critical, firstFinding.severity);
+		assert.strictEqual(SecHubModel.ScanType.codeScan, firstFinding.type);
+
+		let f1CodeCallstack1 = firstFinding.code;
+		assert.strictEqual(82, f1CodeCallstack1?.line);
+		assert.strictEqual(0, f1CodeCallstack1?.column);
+		assert.strictEqual(undefined, f1CodeCallstack1?.source);
+		assert.strictEqual(undefined, f1CodeCallstack1?.relevantPart);
+
+		let f1CodeCallstack2 = f1CodeCallstack1?.calls;
+		assert.strictEqual(36, f1CodeCallstack2?.line);
+		assert.strictEqual(0, f1CodeCallstack2?.column);
+		assert.strictEqual(undefined, f1CodeCallstack2?.source);
+		assert.strictEqual(undefined, f1CodeCallstack2?.relevantPart);
+
+		let f1CodeCallstack3 = f1CodeCallstack2?.calls;
+		assert.strictEqual(undefined, f1CodeCallstack3);
+
+		let secondFinding = findings[1];
+		assert.strictEqual(2, secondFinding.id);
+		assert.strictEqual(SecHubModel.Severity.low, secondFinding.severity);
+		assert.strictEqual(SecHubModel.ScanType.codeScan, secondFinding.type);
+
+		let f2CodeCallstack1 = secondFinding.code;
+		assert.strictEqual(12, f2CodeCallstack1?.line);
+		assert.strictEqual(0, f2CodeCallstack1?.column);
+		assert.strictEqual(undefined, f2CodeCallstack1?.source);
+		assert.strictEqual(undefined, f2CodeCallstack1?.relevantPart);
+
+		let f2CodeCallstack2 = f2CodeCallstack1?.calls;
+		assert.strictEqual(undefined, f2CodeCallstack2);
+	});
 });
 
 function resolveFileLocation(testfile: string): string {
