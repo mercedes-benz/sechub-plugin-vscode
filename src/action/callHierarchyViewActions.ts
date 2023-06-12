@@ -44,10 +44,9 @@ function openInEditor(context: sechubExtension.SecHubContext, element: secHubMod
 	var endPosLength = 0;
 	if ("relevantPart" in element) {
 		endPosLength = element.relevantPart.length;
-	} 
-
-	if ("source" in element) {
-		endPosLength = element.source.length;
+	} else if ("source" in element) {
+		let source : string = element["source"];
+		endPosLength = source.length;
 	}
 
 	var startPos = new vscode.Position(element.line-1, column-1);

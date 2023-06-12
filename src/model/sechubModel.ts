@@ -20,7 +20,9 @@ export enum ScanType {
     infraScan = "infraScan",
     licenseScan = "licenseScan",
     secretScan = "secretScan",
-    unknown = "unknown"
+    unknown = "unknown",
+    analytics = "analytics",
+    report = "report"
 }
 
 export function loadFromFile(location: string): FindingModel {
@@ -49,7 +51,7 @@ export interface FindingNode {
     id: number
     name: string
 
-    description: string
+    description?: string
     severity: Severity
 
     cweId?: number
