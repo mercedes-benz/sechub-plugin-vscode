@@ -31,6 +31,7 @@ NOTE: Please use the new plugin from Mercedes-Benz: https://open-vsx.org/extensi
 
 ** https://nodejs.org/en/download[Windows, macOS and Linux]
 ** https://github.com/nodesource/distributions/tree/master[`deb` and `rpm` packages (Debian/Ubuntu, RHEL/Fedora etc.)]
+** https://nodejs.dev/en/about/releases/[Node.js releases]
 
 . Install Typescript compiler
 +
