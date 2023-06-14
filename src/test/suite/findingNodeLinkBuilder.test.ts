@@ -13,7 +13,7 @@ suite('FindingNodeLinkBuilder Test Suite', () => {
 		builderToTest = new FindingNodeLinkBuilder();
 
 		/* execute */
-		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", severity: secHubModel.Severity.high,cweId: 4711});
+		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", description: "description for findingX", severity: secHubModel.Severity.high,cweId: 4711, type: secHubModel.ScanType.codeScan});
 
 		/* test */
 		if (!uri){
@@ -23,12 +23,25 @@ suite('FindingNodeLinkBuilder Test Suite', () => {
 
 	});
 
+	test('cwe and description not defined results in undefined', () => {
+		/* prepare */
+		builderToTest = new FindingNodeLinkBuilder();
+
+		/* execute */
+		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", severity: secHubModel.Severity.high, type: secHubModel.ScanType.codeScan});
+
+		/* test */
+		if (uri){
+			assert.fail("uri defined!");
+		}
+	});
+
 	test('cwe not defined results in undefined', () => {
 		/* prepare */
 		builderToTest = new FindingNodeLinkBuilder();
 
 		/* execute */
-		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", severity: secHubModel.Severity.high});
+		var uri = builderToTest.buildCWELink({id: 1, name: "findingX", description: "description for findingX", severity: secHubModel.Severity.high, type: secHubModel.ScanType.codeScan});
 
 		/* test */
 		if (uri){
@@ -48,5 +61,4 @@ suite('FindingNodeLinkBuilder Test Suite', () => {
 			assert.fail("uri defined!");
 		}
 	});
-
 });

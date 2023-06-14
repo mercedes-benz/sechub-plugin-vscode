@@ -34,8 +34,23 @@ function openInEditor(context: sechubExtension.SecHubContext, element: secHubMod
 	var fileLocation = result.values().next().value;
 	console.log("File location:" + fileLocation);
 
-	var startPos = new vscode.Position(element.line-1, element.column-1);
-	var endPos = new vscode.Position(element.line-1, element.column-1 + element.relevantPart.length);
+	// ensure the column is not negative or zero
+	var column = 1;
+    if (element.column > 0) {
+        column = element.column;
+    }
+
+	// either use the relevantPart or the source length
+	var endPosLength = 0;
+	if ("relevantPart" in element) {
+		endPosLength = element.relevantPart.length;
+	} else if ("source" in element) {
+		let source : string = element["source"];
+		endPosLength = source.length;
+	}
+
+	var startPos = new vscode.Position(element.line-1, column-1);
+	var endPos = new vscode.Position(element.line-1, column-1 + endPosLength);
 
 	var selectionRange = new vscode.Range(startPos, endPos);
 	var openDocumentCallback = (doc: vscode.TextDocument) => {

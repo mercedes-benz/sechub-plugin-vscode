@@ -32,7 +32,6 @@ suite('FileLocationExplorer Test Suite', () => {
 		assert.strictEqual(1, found.size,"Not expected size of locations returned");
 		const firstValue = found.values().next().value;
 		assert.deepStrictEqual(firstValue,expectedFilePath,"must be expected result path");
-
 	});
 
 	test('scenario1_projects_source_TestMe_c_found', () => {
