@@ -5,6 +5,9 @@ All notable changes to the "sechub-plugin-vscode" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.1] - 2023-06-14
+- Fix README issue by converting AsciiDoc to Markdown
+
 ## [1.0.0] - 2023-06-14
 - Fixed issues importing reports
 - Dependencies updated
