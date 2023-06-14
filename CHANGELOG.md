@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [1.0.0] - 2023-06-14
 - Fixed issues importing reports
 - Dependencies updated
-- Minimum NodeJS version 14
+- Minimum NodeJS version 16
 
 ## [0.1.3] - 2022-03-22
 - Dependencies updated
