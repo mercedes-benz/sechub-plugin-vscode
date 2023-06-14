@@ -5,6 +5,11 @@ All notable changes to the "sechub-plugin-vscode" extension will be documented i
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.0] - 2023-06-14
+- Fixed issues importing reports
+- Dependencies updated
+- Minimum NodeJS version 14
+
 ## [0.1.3] - 2022-03-22
 - Dependencies updated
 - Workflow uses Node 14
