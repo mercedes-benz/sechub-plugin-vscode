@@ -12,7 +12,7 @@ By contributing you will agree that your contribution will be put under the same
 
 ## CLA
 
-Before you can contribute, you will need to sign our CLA [Contributor License Agreement](https://github.com/mercedes-benz/foss/blob/master/cla/2022-04-25_MB_FOSS_CLA_MBTI.pdf) and send the signed CLA to <CLA-mbti@mercedes-benz.com> 
+Before you can contribute, you will need to sign our Contributor License Agreement (CLA). When you create your first pull request, you will be requested by our CLA-assistant to sign this CLA.
 
 ## Communication
 
