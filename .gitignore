@@ -1,6 +1,0 @@
-node_modules
-out
-.vscode-test/
-
-# Plugin installation packages
-*.vsix
